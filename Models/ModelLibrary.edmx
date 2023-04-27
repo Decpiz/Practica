@@ -1,0 +1,839 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Bus_CompanyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Avtobysi">
+          <Key>
+            <PropertyRef Name="ID_Avtobysa" />
+          </Key>
+          <Property Name="ID_Avtobysa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Statusa" Type="int" Nullable="false" />
+          <Property Name="Nomer_avtobysa" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="God_vipyska" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Kolvo_mest" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bileti">
+          <Key>
+            <PropertyRef Name="ID_Bileta" />
+          </Key>
+          <Property Name="ID_Bileta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Reisa" Type="int" Nullable="false" />
+          <Property Name="ID_Passazhira" Type="int" Nullable="false" />
+          <Property Name="ID_Operacii" Type="int" Nullable="false" />
+          <Property Name="Nomer_bileta" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Summa" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dolzhnosti">
+          <Key>
+            <PropertyRef Name="ID_Dolzhnosti" />
+          </Key>
+          <Property Name="ID_Dolzhnosti" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gorod">
+          <Key>
+            <PropertyRef Name="ID_Goroda" />
+          </Key>
+          <Property Name="ID_Goroda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Operacii\">
+          <Key>
+            <PropertyRef Name="ID_Operacii" />
+          </Key>
+          <Property Name="ID_Operacii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Passazhira" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Kolvo_biletov" Type="int" Nullable="false" />
+          <Property Name="Summa" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passazhiri">
+          <Key>
+            <PropertyRef Name="ID_Passazhira" />
+          </Key>
+          <Property Name="ID_Passazhira" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Ymya" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="25" />
+          <Property Name="Nomer_telefona" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Pochta" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Poezdka">
+          <Key>
+            <PropertyRef Name="ID_Reisa" />
+            <PropertyRef Name="ID_Goroda" />
+          </Key>
+          <Property Name="ID_Reisa" Type="int" Nullable="false" />
+          <Property Name="ID_Goroda" Type="int" Nullable="false" />
+          <Property Name="Vremia" Type="time" Precision="4" />
+        </EntityType>
+        <EntityType Name="Reisi">
+          <Key>
+            <PropertyRef Name="ID_Reisa" />
+          </Key>
+          <Property Name="ID_Reisa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Avtobysa" Type="int" Nullable="false" />
+          <Property Name="ID_Sotrydnika" Type="int" Nullable="false" />
+          <Property Name="Vremia_v_pyti" Type="time" Precision="2" Nullable="false" />
+          <Property Name="Distancia" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Remont">
+          <Key>
+            <PropertyRef Name="ID_Remonta" />
+          </Key>
+          <Property Name="ID_Remonta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Avtobysa" Type="int" Nullable="false" />
+          <Property Name="ID_Sotrudnika" Type="int" Nullable="false" />
+          <Property Name="Data_nachalo" Type="date" Nullable="false" />
+          <Property Name="Data_konec" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrydniki">
+          <Key>
+            <PropertyRef Name="ID_Sotrudnika" />
+          </Key>
+          <Property Name="ID_Sotrudnika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Dolzhnosti" Type="int" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Nomer_telefona" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Pochta" Type="nvarchar" MaxLength="25" />
+          <Property Name="Data_trydoystroistva" Type="date" Nullable="false" />
+          <Property Name="ID_Ydostoverenia" Type="int" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID_Statusa" />
+          </Key>
+          <Property Name="ID_Statusa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Voditelskoe_ydostoverenie">
+          <Key>
+            <PropertyRef Name="ID_Ydostoverenia" />
+          </Key>
+          <Property Name="ID_Ydostoverenia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seria" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Nomer" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="Data_vidachi" Type="date" Nullable="false" />
+          <Property Name="Srok_deistvia" Type="date" Nullable="false" />
+          <Property Name="Stazh_vozhdenia" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Avtobysi_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Avtobysi" Type="Self.Avtobysi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID_Statusa" />
+            </Principal>
+            <Dependent Role="Avtobysi">
+              <PropertyRef Name="ID_Statusa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bileti_Operacii\">
+          <End Role="Operacii\" Type="Self.Operacii\" Multiplicity="1" />
+          <End Role="Bileti" Type="Self.Bileti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operacii\">
+              <PropertyRef Name="ID_Operacii" />
+            </Principal>
+            <Dependent Role="Bileti">
+              <PropertyRef Name="ID_Operacii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bileti_Passazhiri">
+          <End Role="Passazhiri" Type="Self.Passazhiri" Multiplicity="1" />
+          <End Role="Bileti" Type="Self.Bileti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passazhiri">
+              <PropertyRef Name="ID_Passazhira" />
+            </Principal>
+            <Dependent Role="Bileti">
+              <PropertyRef Name="ID_Passazhira" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bileti_Reisi">
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="1" />
+          <End Role="Bileti" Type="Self.Bileti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reisi">
+              <PropertyRef Name="ID_Reisa" />
+            </Principal>
+            <Dependent Role="Bileti">
+              <PropertyRef Name="ID_Reisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poezdka_Gorod">
+          <End Role="Gorod" Type="Self.Gorod" Multiplicity="1" />
+          <End Role="Poezdka" Type="Self.Poezdka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gorod">
+              <PropertyRef Name="ID_Goroda" />
+            </Principal>
+            <Dependent Role="Poezdka">
+              <PropertyRef Name="ID_Goroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poezdka_Reisi">
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="1" />
+          <End Role="Poezdka" Type="Self.Poezdka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reisi">
+              <PropertyRef Name="ID_Reisa" />
+            </Principal>
+            <Dependent Role="Poezdka">
+              <PropertyRef Name="ID_Reisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reisi_Avtobysi">
+          <End Role="Avtobysi" Type="Self.Avtobysi" Multiplicity="1" />
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Avtobysi">
+              <PropertyRef Name="ID_Avtobysa" />
+            </Principal>
+            <Dependent Role="Reisi">
+              <PropertyRef Name="ID_Reisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reisi_Sotrydniki">
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="1" />
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrydniki">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Principal>
+            <Dependent Role="Reisi">
+              <PropertyRef Name="ID_Sotrydnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remont_Sotrydniki">
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="1" />
+          <End Role="Remont" Type="Self.Remont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrydniki">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Principal>
+            <Dependent Role="Remont">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrydniki_Dolzhnosti">
+          <End Role="Dolzhnosti" Type="Self.Dolzhnosti" Multiplicity="1" />
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dolzhnosti">
+              <PropertyRef Name="ID_Dolzhnosti" />
+            </Principal>
+            <Dependent Role="Sotrydniki">
+              <PropertyRef Name="ID_Dolzhnosti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrydniki_Voditelskoe_ydostoverenie">
+          <End Role="Voditelskoe_ydostoverenie" Type="Self.Voditelskoe_ydostoverenie" Multiplicity="0..1" />
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voditelskoe_ydostoverenie">
+              <PropertyRef Name="ID_Ydostoverenia" />
+            </Principal>
+            <Dependent Role="Sotrydniki">
+              <PropertyRef Name="ID_Ydostoverenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Bus_CompanyModelContainer">
+          <EntitySet Name="Avtobysi" EntityType="Self.Avtobysi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bileti" EntityType="Self.Bileti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dolzhnosti" EntityType="Self.Dolzhnosti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gorod" EntityType="Self.Gorod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operacii\" EntityType="Self.Operacii\" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passazhiri" EntityType="Self.Passazhiri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poezdka" EntityType="Self.Poezdka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reisi" EntityType="Self.Reisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remont" EntityType="Self.Remont" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrydniki" EntityType="Self.Sotrydniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voditelskoe_ydostoverenie" EntityType="Self.Voditelskoe_ydostoverenie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Avtobysi_Status" Association="Self.FK_Avtobysi_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Avtobysi" EntitySet="Avtobysi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bileti_Operacii\" Association="Self.FK_Bileti_Operacii\">
+            <End Role="Operacii\" EntitySet="Operacii\" />
+            <End Role="Bileti" EntitySet="Bileti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bileti_Passazhiri" Association="Self.FK_Bileti_Passazhiri">
+            <End Role="Passazhiri" EntitySet="Passazhiri" />
+            <End Role="Bileti" EntitySet="Bileti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bileti_Reisi" Association="Self.FK_Bileti_Reisi">
+            <End Role="Reisi" EntitySet="Reisi" />
+            <End Role="Bileti" EntitySet="Bileti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poezdka_Gorod" Association="Self.FK_Poezdka_Gorod">
+            <End Role="Gorod" EntitySet="Gorod" />
+            <End Role="Poezdka" EntitySet="Poezdka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poezdka_Reisi" Association="Self.FK_Poezdka_Reisi">
+            <End Role="Reisi" EntitySet="Reisi" />
+            <End Role="Poezdka" EntitySet="Poezdka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reisi_Avtobysi" Association="Self.FK_Reisi_Avtobysi">
+            <End Role="Avtobysi" EntitySet="Avtobysi" />
+            <End Role="Reisi" EntitySet="Reisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reisi_Sotrydniki" Association="Self.FK_Reisi_Sotrydniki">
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+            <End Role="Reisi" EntitySet="Reisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remont_Sotrydniki" Association="Self.FK_Remont_Sotrydniki">
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+            <End Role="Remont" EntitySet="Remont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrydniki_Dolzhnosti" Association="Self.FK_Sotrydniki_Dolzhnosti">
+            <End Role="Dolzhnosti" EntitySet="Dolzhnosti" />
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrydniki_Voditelskoe_ydostoverenie" Association="Self.FK_Sotrydniki_Voditelskoe_ydostoverenie">
+            <End Role="Voditelskoe_ydostoverenie" EntitySet="Voditelskoe_ydostoverenie" />
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bus_CompanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Avtobysi">
+          <Key>
+            <PropertyRef Name="ID_Avtobysa" />
+          </Key>
+          <Property Name="ID_Avtobysa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Statusa" Type="Int32" Nullable="false" />
+          <Property Name="Nomer_avtobysa" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="God_vipyska" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kolvo_mest" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Avtobysi_Status" FromRole="Avtobysi" ToRole="Status" />
+          <NavigationProperty Name="Reisi" Relationship="Self.FK_Reisi_Avtobysi" FromRole="Avtobysi" ToRole="Reisi" />
+        </EntityType>
+        <EntityType Name="Bileti">
+          <Key>
+            <PropertyRef Name="ID_Bileta" />
+          </Key>
+          <Property Name="ID_Bileta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Reisa" Type="Int32" Nullable="false" />
+          <Property Name="ID_Passazhira" Type="Int32" Nullable="false" />
+          <Property Name="ID_Operacii" Type="Int32" Nullable="false" />
+          <Property Name="Nomer_bileta" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Summa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Operacii_" Relationship="Self.FK_Bileti_Operacii_" FromRole="Bileti" ToRole="Operacii_" />
+          <NavigationProperty Name="Passazhiri" Relationship="Self.FK_Bileti_Passazhiri" FromRole="Bileti" ToRole="Passazhiri" />
+          <NavigationProperty Name="Reisi" Relationship="Self.FK_Bileti_Reisi" FromRole="Bileti" ToRole="Reisi" />
+        </EntityType>
+        <EntityType Name="Dolzhnosti">
+          <Key>
+            <PropertyRef Name="ID_Dolzhnosti" />
+          </Key>
+          <Property Name="ID_Dolzhnosti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sotrydniki" Relationship="Self.FK_Sotrydniki_Dolzhnosti" FromRole="Dolzhnosti" ToRole="Sotrydniki" />
+        </EntityType>
+        <EntityType Name="Gorod">
+          <Key>
+            <PropertyRef Name="ID_Goroda" />
+          </Key>
+          <Property Name="ID_Goroda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Poezdka" Relationship="Self.FK_Poezdka_Gorod" FromRole="Gorod" ToRole="Poezdka" />
+        </EntityType>
+        <EntityType Name="Operacii_">
+          <Key>
+            <PropertyRef Name="ID_Operacii" />
+          </Key>
+          <Property Name="ID_Operacii" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Passazhira" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Kolvo_biletov" Type="Int32" Nullable="false" />
+          <Property Name="Summa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Bileti" Relationship="Self.FK_Bileti_Operacii_" FromRole="Operacii_" ToRole="Bileti" />
+        </EntityType>
+        <EntityType Name="Passazhiri">
+          <Key>
+            <PropertyRef Name="ID_Passazhira" />
+          </Key>
+          <Property Name="ID_Passazhira" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familia" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ymya" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Nomer_telefona" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pochta" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bileti" Relationship="Self.FK_Bileti_Passazhiri" FromRole="Passazhiri" ToRole="Bileti" />
+        </EntityType>
+        <EntityType Name="Poezdka">
+          <Key>
+            <PropertyRef Name="ID_Reisa" />
+            <PropertyRef Name="ID_Goroda" />
+          </Key>
+          <Property Name="ID_Reisa" Type="Int32" Nullable="false" />
+          <Property Name="ID_Goroda" Type="Int32" Nullable="false" />
+          <Property Name="Vremia" Type="Time" Precision="4" />
+          <NavigationProperty Name="Gorod" Relationship="Self.FK_Poezdka_Gorod" FromRole="Poezdka" ToRole="Gorod" />
+          <NavigationProperty Name="Reisi" Relationship="Self.FK_Poezdka_Reisi" FromRole="Poezdka" ToRole="Reisi" />
+        </EntityType>
+        <EntityType Name="Reisi">
+          <Key>
+            <PropertyRef Name="ID_Reisa" />
+          </Key>
+          <Property Name="ID_Reisa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Avtobysa" Type="Int32" Nullable="false" />
+          <Property Name="ID_Sotrydnika" Type="Int32" Nullable="false" />
+          <Property Name="Vremia_v_pyti" Type="Time" Nullable="false" Precision="2" />
+          <Property Name="Distancia" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Avtobysi" Relationship="Self.FK_Reisi_Avtobysi" FromRole="Reisi" ToRole="Avtobysi" />
+          <NavigationProperty Name="Bileti" Relationship="Self.FK_Bileti_Reisi" FromRole="Reisi" ToRole="Bileti" />
+          <NavigationProperty Name="Poezdka" Relationship="Self.FK_Poezdka_Reisi" FromRole="Reisi" ToRole="Poezdka" />
+          <NavigationProperty Name="Sotrydniki" Relationship="Self.FK_Reisi_Sotrydniki" FromRole="Reisi" ToRole="Sotrydniki" />
+        </EntityType>
+        <EntityType Name="Remont">
+          <Key>
+            <PropertyRef Name="ID_Remonta" />
+          </Key>
+          <Property Name="ID_Remonta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Avtobysa" Type="Int32" Nullable="false" />
+          <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" />
+          <Property Name="Data_nachalo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Data_konec" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Sotrydniki" Relationship="Self.FK_Remont_Sotrydniki" FromRole="Remont" ToRole="Sotrydniki" />
+        </EntityType>
+        <EntityType Name="Sotrydniki">
+          <Key>
+            <PropertyRef Name="ID_Sotrudnika" />
+          </Key>
+          <Property Name="ID_Sotrudnika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Dolzhnosti" Type="Int32" Nullable="false" />
+          <Property Name="Familia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Nomer_telefona" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pochta" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Data_trydoystroistva" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_Ydostoverenia" Type="Int32" />
+          <NavigationProperty Name="Dolzhnosti" Relationship="Self.FK_Sotrydniki_Dolzhnosti" FromRole="Sotrydniki" ToRole="Dolzhnosti" />
+          <NavigationProperty Name="Reisi" Relationship="Self.FK_Reisi_Sotrydniki" FromRole="Sotrydniki" ToRole="Reisi" />
+          <NavigationProperty Name="Remont" Relationship="Self.FK_Remont_Sotrydniki" FromRole="Sotrydniki" ToRole="Remont" />
+          <NavigationProperty Name="Voditelskoe_ydostoverenie" Relationship="Self.FK_Sotrydniki_Voditelskoe_ydostoverenie" FromRole="Sotrydniki" ToRole="Voditelskoe_ydostoverenie" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID_Statusa" />
+          </Key>
+          <Property Name="ID_Statusa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Avtobysi" Relationship="Self.FK_Avtobysi_Status" FromRole="Status" ToRole="Avtobysi" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Voditelskoe_ydostoverenie">
+          <Key>
+            <PropertyRef Name="ID_Ydostoverenia" />
+          </Key>
+          <Property Name="ID_Ydostoverenia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seria" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nomer" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Data_vidachi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Srok_deistvia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Stazh_vozhdenia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sotrydniki" Relationship="Self.FK_Sotrydniki_Voditelskoe_ydostoverenie" FromRole="Voditelskoe_ydostoverenie" ToRole="Sotrydniki" />
+        </EntityType>
+        <Association Name="FK_Avtobysi_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Avtobysi" Type="Self.Avtobysi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID_Statusa" />
+            </Principal>
+            <Dependent Role="Avtobysi">
+              <PropertyRef Name="ID_Statusa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reisi_Avtobysi">
+          <End Role="Avtobysi" Type="Self.Avtobysi" Multiplicity="1" />
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Avtobysi">
+              <PropertyRef Name="ID_Avtobysa" />
+            </Principal>
+            <Dependent Role="Reisi">
+              <PropertyRef Name="ID_Reisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bileti_Operacii_">
+          <End Role="Operacii_" Type="Self.Operacii_" Multiplicity="1" />
+          <End Role="Bileti" Type="Self.Bileti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operacii_">
+              <PropertyRef Name="ID_Operacii" />
+            </Principal>
+            <Dependent Role="Bileti">
+              <PropertyRef Name="ID_Operacii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bileti_Passazhiri">
+          <End Role="Passazhiri" Type="Self.Passazhiri" Multiplicity="1" />
+          <End Role="Bileti" Type="Self.Bileti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passazhiri">
+              <PropertyRef Name="ID_Passazhira" />
+            </Principal>
+            <Dependent Role="Bileti">
+              <PropertyRef Name="ID_Passazhira" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bileti_Reisi">
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="1" />
+          <End Role="Bileti" Type="Self.Bileti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reisi">
+              <PropertyRef Name="ID_Reisa" />
+            </Principal>
+            <Dependent Role="Bileti">
+              <PropertyRef Name="ID_Reisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrydniki_Dolzhnosti">
+          <End Role="Dolzhnosti" Type="Self.Dolzhnosti" Multiplicity="1" />
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dolzhnosti">
+              <PropertyRef Name="ID_Dolzhnosti" />
+            </Principal>
+            <Dependent Role="Sotrydniki">
+              <PropertyRef Name="ID_Dolzhnosti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poezdka_Gorod">
+          <End Role="Gorod" Type="Self.Gorod" Multiplicity="1" />
+          <End Role="Poezdka" Type="Self.Poezdka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gorod">
+              <PropertyRef Name="ID_Goroda" />
+            </Principal>
+            <Dependent Role="Poezdka">
+              <PropertyRef Name="ID_Goroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poezdka_Reisi">
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="1" />
+          <End Role="Poezdka" Type="Self.Poezdka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reisi">
+              <PropertyRef Name="ID_Reisa" />
+            </Principal>
+            <Dependent Role="Poezdka">
+              <PropertyRef Name="ID_Reisa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reisi_Sotrydniki">
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="1" />
+          <End Role="Reisi" Type="Self.Reisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrydniki">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Principal>
+            <Dependent Role="Reisi">
+              <PropertyRef Name="ID_Sotrydnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remont_Sotrydniki">
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="1" />
+          <End Role="Remont" Type="Self.Remont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrydniki">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Principal>
+            <Dependent Role="Remont">
+              <PropertyRef Name="ID_Sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrydniki_Voditelskoe_ydostoverenie">
+          <End Role="Voditelskoe_ydostoverenie" Type="Self.Voditelskoe_ydostoverenie" Multiplicity="0..1" />
+          <End Role="Sotrydniki" Type="Self.Sotrydniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voditelskoe_ydostoverenie">
+              <PropertyRef Name="ID_Ydostoverenia" />
+            </Principal>
+            <Dependent Role="Sotrydniki">
+              <PropertyRef Name="ID_Ydostoverenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bus_CompanyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avtobysi" EntityType="Self.Avtobysi" />
+          <EntitySet Name="Bileti" EntityType="Self.Bileti" />
+          <EntitySet Name="Dolzhnosti" EntityType="Self.Dolzhnosti" />
+          <EntitySet Name="Gorod" EntityType="Self.Gorod" />
+          <EntitySet Name="Operacii_" EntityType="Self.Operacii_" />
+          <EntitySet Name="Passazhiri" EntityType="Self.Passazhiri" />
+          <EntitySet Name="Poezdka" EntityType="Self.Poezdka" />
+          <EntitySet Name="Reisi" EntityType="Self.Reisi" />
+          <EntitySet Name="Remont" EntityType="Self.Remont" />
+          <EntitySet Name="Sotrydniki" EntityType="Self.Sotrydniki" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Voditelskoe_ydostoverenie" EntityType="Self.Voditelskoe_ydostoverenie" />
+          <AssociationSet Name="FK_Avtobysi_Status" Association="Self.FK_Avtobysi_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Avtobysi" EntitySet="Avtobysi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reisi_Avtobysi" Association="Self.FK_Reisi_Avtobysi">
+            <End Role="Avtobysi" EntitySet="Avtobysi" />
+            <End Role="Reisi" EntitySet="Reisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bileti_Operacii_" Association="Self.FK_Bileti_Operacii_">
+            <End Role="Operacii_" EntitySet="Operacii_" />
+            <End Role="Bileti" EntitySet="Bileti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bileti_Passazhiri" Association="Self.FK_Bileti_Passazhiri">
+            <End Role="Passazhiri" EntitySet="Passazhiri" />
+            <End Role="Bileti" EntitySet="Bileti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bileti_Reisi" Association="Self.FK_Bileti_Reisi">
+            <End Role="Reisi" EntitySet="Reisi" />
+            <End Role="Bileti" EntitySet="Bileti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrydniki_Dolzhnosti" Association="Self.FK_Sotrydniki_Dolzhnosti">
+            <End Role="Dolzhnosti" EntitySet="Dolzhnosti" />
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poezdka_Gorod" Association="Self.FK_Poezdka_Gorod">
+            <End Role="Gorod" EntitySet="Gorod" />
+            <End Role="Poezdka" EntitySet="Poezdka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poezdka_Reisi" Association="Self.FK_Poezdka_Reisi">
+            <End Role="Reisi" EntitySet="Reisi" />
+            <End Role="Poezdka" EntitySet="Poezdka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reisi_Sotrydniki" Association="Self.FK_Reisi_Sotrydniki">
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+            <End Role="Reisi" EntitySet="Reisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remont_Sotrydniki" Association="Self.FK_Remont_Sotrydniki">
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+            <End Role="Remont" EntitySet="Remont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrydniki_Voditelskoe_ydostoverenie" Association="Self.FK_Sotrydniki_Voditelskoe_ydostoverenie">
+            <End Role="Voditelskoe_ydostoverenie" EntitySet="Voditelskoe_ydostoverenie" />
+            <End Role="Sotrydniki" EntitySet="Sotrydniki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Bus_CompanyModelContainer" CdmEntityContainer="Bus_CompanyEntities">
+          <EntitySetMapping Name="Avtobysi">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Avtobysi">
+              <MappingFragment StoreEntitySet="Avtobysi">
+                <ScalarProperty Name="ID_Avtobysa" ColumnName="ID_Avtobysa" />
+                <ScalarProperty Name="ID_Statusa" ColumnName="ID_Statusa" />
+                <ScalarProperty Name="Nomer_avtobysa" ColumnName="Nomer_avtobysa" />
+                <ScalarProperty Name="God_vipyska" ColumnName="God_vipyska" />
+                <ScalarProperty Name="Kolvo_mest" ColumnName="Kolvo_mest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bileti">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Bileti">
+              <MappingFragment StoreEntitySet="Bileti">
+                <ScalarProperty Name="ID_Bileta" ColumnName="ID_Bileta" />
+                <ScalarProperty Name="ID_Reisa" ColumnName="ID_Reisa" />
+                <ScalarProperty Name="ID_Passazhira" ColumnName="ID_Passazhira" />
+                <ScalarProperty Name="ID_Operacii" ColumnName="ID_Operacii" />
+                <ScalarProperty Name="Nomer_bileta" ColumnName="Nomer_bileta" />
+                <ScalarProperty Name="Summa" ColumnName="Summa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dolzhnosti">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Dolzhnosti">
+              <MappingFragment StoreEntitySet="Dolzhnosti">
+                <ScalarProperty Name="ID_Dolzhnosti" ColumnName="ID_Dolzhnosti" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gorod">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Gorod">
+              <MappingFragment StoreEntitySet="Gorod">
+                <ScalarProperty Name="ID_Goroda" ColumnName="ID_Goroda" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operacii_">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Operacii_">
+              <MappingFragment StoreEntitySet="Operacii\">
+                <ScalarProperty Name="ID_Operacii" ColumnName="ID_Operacii" />
+                <ScalarProperty Name="ID_Passazhira" ColumnName="ID_Passazhira" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Kolvo_biletov" ColumnName="Kolvo_biletov" />
+                <ScalarProperty Name="Summa" ColumnName="Summa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passazhiri">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Passazhiri">
+              <MappingFragment StoreEntitySet="Passazhiri">
+                <ScalarProperty Name="ID_Passazhira" ColumnName="ID_Passazhira" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Ymya" ColumnName="Ymya" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Nomer_telefona" ColumnName="Nomer_telefona" />
+                <ScalarProperty Name="Pochta" ColumnName="Pochta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Poezdka">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Poezdka">
+              <MappingFragment StoreEntitySet="Poezdka">
+                <ScalarProperty Name="ID_Reisa" ColumnName="ID_Reisa" />
+                <ScalarProperty Name="ID_Goroda" ColumnName="ID_Goroda" />
+                <ScalarProperty Name="Vremia" ColumnName="Vremia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reisi">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Reisi">
+              <MappingFragment StoreEntitySet="Reisi">
+                <ScalarProperty Name="ID_Reisa" ColumnName="ID_Reisa" />
+                <ScalarProperty Name="ID_Avtobysa" ColumnName="ID_Avtobysa" />
+                <ScalarProperty Name="ID_Sotrydnika" ColumnName="ID_Sotrydnika" />
+                <ScalarProperty Name="Vremia_v_pyti" ColumnName="Vremia_v_pyti" />
+                <ScalarProperty Name="Distancia" ColumnName="Distancia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remont">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Remont">
+              <MappingFragment StoreEntitySet="Remont">
+                <ScalarProperty Name="ID_Remonta" ColumnName="ID_Remonta" />
+                <ScalarProperty Name="ID_Avtobysa" ColumnName="ID_Avtobysa" />
+                <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+                <ScalarProperty Name="Data_nachalo" ColumnName="Data_nachalo" />
+                <ScalarProperty Name="Data_konec" ColumnName="Data_konec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrydniki">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Sotrydniki">
+              <MappingFragment StoreEntitySet="Sotrydniki">
+                <ScalarProperty Name="ID_Sotrudnika" ColumnName="ID_Sotrudnika" />
+                <ScalarProperty Name="ID_Dolzhnosti" ColumnName="ID_Dolzhnosti" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Nomer_telefona" ColumnName="Nomer_telefona" />
+                <ScalarProperty Name="Pochta" ColumnName="Pochta" />
+                <ScalarProperty Name="Data_trydoystroistva" ColumnName="Data_trydoystroistva" />
+                <ScalarProperty Name="ID_Ydostoverenia" ColumnName="ID_Ydostoverenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID_Statusa" ColumnName="ID_Statusa" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voditelskoe_ydostoverenie">
+            <EntityTypeMapping TypeName="Bus_CompanyModel.Voditelskoe_ydostoverenie">
+              <MappingFragment StoreEntitySet="Voditelskoe_ydostoverenie">
+                <ScalarProperty Name="ID_Ydostoverenia" ColumnName="ID_Ydostoverenia" />
+                <ScalarProperty Name="Seria" ColumnName="Seria" />
+                <ScalarProperty Name="Nomer" ColumnName="Nomer" />
+                <ScalarProperty Name="Data_vidachi" ColumnName="Data_vidachi" />
+                <ScalarProperty Name="Srok_deistvia" ColumnName="Srok_deistvia" />
+                <ScalarProperty Name="Stazh_vozhdenia" ColumnName="Stazh_vozhdenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

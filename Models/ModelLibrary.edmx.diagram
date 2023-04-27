@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b99abbfe9974bafae0ea7f9fa1f062f" Name="Diagram1">
+        <EntityTypeShape EntityType="Bus_CompanyModel.Avtobysi" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Bileti" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Dolzhnosti" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Gorod" Width="1.5" PointX="8.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Operacii_" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Passazhiri" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Poezdka" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Reisi" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Remont" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Sotrydniki" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Status" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bus_CompanyModel.Voditelskoe_ydostoverenie" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Avtobysi_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Reisi_Avtobysi" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Bileti_Operacii_" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Bileti_Passazhiri" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Bileti_Reisi" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Sotrydniki_Dolzhnosti" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Poezdka_Gorod" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Poezdka_Reisi" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Reisi_Sotrydniki" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Remont_Sotrydniki" ManuallyRouted="false" />
+        <AssociationConnector Association="Bus_CompanyModel.FK_Sotrydniki_Voditelskoe_ydostoverenie" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
